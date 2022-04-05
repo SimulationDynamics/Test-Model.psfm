@@ -1,0 +1,46 @@
+InternalClassType: DataTable
+Coordinate3D: [56.150000000000006,-8,0]
+Name: tmpCharts
+Origin: 59ce8203-57eb-41d0-a80a-b57ec8a03ada
+UUID: 3dcb68e1-fc2e-4bc8-b648-438cbd9886e5
+$CustomAttributes:
+-
+ Name: removeTmpCharts
+ ID: 1
+ DataType: method
+ RandomSeed: 194
+ Value: |+1
+  -- called by:_resetReport,_prepareReport
+  for var j := tmpCharts.yDim downto 1 
+  	if tmpCharts[1,j] /= void 
+  		tmpCharts[1,j].deleteObject
+  	end
+  next
+  tmpCharts.delete
+$Data:
+ Comment: ~
+ ListFormat:
+  ColumnWidth: 20
+  DataType: string
+  MaxXDim: 1
+  ShowDataType: true
+  ColumnFormat:
+  -
+   Index: 0
+   Hidden: false
+  -
+   Index: 1
+   DataType: object
+   Width: 45
+  RowFormat:
+  -
+   Index: 0
+   Hidden: false
+  CellFormat:
+  -
+   Index: 1
+   Rows:
+   -
+    Index: 3
+    FontColor: 0x0
+ Columns:

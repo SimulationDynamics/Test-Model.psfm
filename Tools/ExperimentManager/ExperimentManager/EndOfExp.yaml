@@ -1,0 +1,51 @@
+InternalClassType: Method
+Coordinate3D: [4,-20.05,0]
+Name: EndOfExp
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- an single experiment is finished: determine confidence intervals
+ -- Called by:_EndOfSim (non-distributed simulation)
+ if usingRemote then return; end
+ 
+ if Kind_Output.numberOfOutputValues > 0 
+ 	Dialog.Dialog.setSensitive("Chart_but", true)
+ end
+ 
+ if Chart.active AND Chart.MeanValueTable.ydim > 0 
+ 	prepChart
+ 	Chart.update
+ end
+ 
+ if save_model  -- save in the folder, which is defined in the dialog
+ 	var ModDirLoc:string := to_str(ModelDir,"\\\\",savefile,currExpNo,".spp")
+ 	executeSilent("param modStr:string saveModel(modStr,false,false)",ModDirLoc)
+ 	var infoStr:string := to_str(ExpTable.getExpID(currExpNo)," is closed and save model file: \\"",ModDirLoc,"\\"")
+ 	Recording.append(infoStr)
+ end
+ 
+ Recording.append(" ")
+ 
+ var ExpNoLocal:integer := getNextExpNo
+ 
+ var startNextExp:boolean := (UsingTables AND (ExpNoLocal <= ExpTable.yDim))   OR   (UsingRules AND (ExpNoLocal <= NumRulesExp))
+ 
+ if State ="wait4stop" 
+ 	startNextExp := false
+ 	State :="stopped"
+ 	EndOfAllExperiments
+ else --_State = "running"
+ 	if startNextExp		
+ 		currExpNo := ExpNoLocal -- set the 'currExpNo' for the next experiment
+ 		currRunNo := 1
+ 		DefSeed4Run(currExpNo,currRunNo)
+ 		eventController.reset
+ 		
+ 		Dialog.Dialog.setCaption("CurrExp", to_str(currExpNo))
+ 		Dialog.Dialog.setCaption("CurrObs", to_str(currRunNo))	
+ 	else
+ 		State := "ready"
+ 		EndOfAllExperiments
+ 	end
+ end
+RandomSeed: 284
+UUID: c5dd63f4-4f24-4325-ad45-db7e4b274549

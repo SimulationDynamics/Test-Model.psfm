@@ -1,0 +1,19 @@
+InternalClassType: Method
+Coordinate3D: [5.9,-5.5,0]
+Name: removeStats
+Origin: f1b15c85-c3f7-453f-99df-af36043a3091
+Program: |+1
+ -- called by: Dialog + context menu,_analyzeModel, reset
+ if current.class /= void 
+ 	
+ 	removeCharts(~)
+ 	
+ 	resourceStats.inheritFormat := true
+ 	resourceStats.inheritContents := true
+ 	Analyzed := false
+ else
+ 	-- The Bottleneck Analyzer must be inserted before use.
+ 	messagebox(rootfolder.Localization.getText(9),1,11)
+ end
+RandomSeed: 75
+UUID: 2195911d-f7d7-4c58-926e-079a1bfc457b

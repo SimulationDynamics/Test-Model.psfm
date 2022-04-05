@@ -1,0 +1,23 @@
+InternalClassType: Method
+Coordinate3D: [14,-1,0]
+Name: CloseTab
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ /*
+ called by: interaction
+ */
+ param B:boolean
+ 
+ var ButName:string;var dialogObj,ApplObj:object
+ 
+ if ? = void then return;end-- for instance, because of deleteObject
+ ApplObj := ?.~
+ 
+ ?.closeDialog
+ ?.isOpen:=false
+ dialogObj := ?.~.Dialog.GAWizard
+ ButName := to_str(?.name,"_B")
+ dialogObj.setCaption(ButName,rootfolder.Localization.getText(6))--"Open"
+
+RandomSeed: 490
+UUID: d17e21df-842a-427a-935d-113be9a2402a

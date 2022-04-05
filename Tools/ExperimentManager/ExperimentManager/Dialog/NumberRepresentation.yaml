@@ -1,0 +1,32 @@
+InternalClassType: Method
+Coordinate3D: [4,11,0]
+Name: NumberRepresentation
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- called by: open the tablefiles
+ -- Experiemntmanager: ExpTable, Results, DetailedResults
+ -- GAWizard: Fitness, IntermediateResults, bestIndividuals, StatisticalEvaluation, ProblemDefinition 
+ param Tab:any
+ 
+ var decSep:string := ~.decimalSeparator
+ 
+ switch decSep
+ case ".", "," 	
+ else -- non reasonable value
+ 	decSep := "."
+ 	~.decimalSeparator := decSep
+ end
+ 
+ Tab.decimalSeparator := decSep
+ 
+ for var j := 1 to Tab.xDim 
+ 	if Tab.getDataType(j) = "table" 
+ 		for var k := 1 to Tab.yDim 
+ 			if Tab[j,k] /= void 
+ 				NumberRepresentation(Tab[j,k])
+ 			end
+ 		next
+ 	end -- if column of type 'table'
+ next
+RandomSeed: 307
+UUID: 22792b79-ec32-4364-afb3-c9e37a720cf9

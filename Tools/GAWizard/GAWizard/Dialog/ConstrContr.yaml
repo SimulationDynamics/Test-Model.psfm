@@ -1,0 +1,15 @@
+InternalClassType: Method
+Coordinate3D: [16,-7,0]
+Name: ConstrContr
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- constructor
+ ~.currIcon := "Default" -- switch off inheritance
+ if ~._3D.exists
+ 	~._3D.VisibleGraphicGroups := makeArray("default")
+ end
+ 
+ ~.GAoptimization.taskTable := ~.GAoptimization.taskTable -- switch off InheritContents
+ ~.GAoptimization.taskTable.delete
+RandomSeed: 451
+UUID: 90ab273b-e2ff-4007-b1cd-15a405820d45

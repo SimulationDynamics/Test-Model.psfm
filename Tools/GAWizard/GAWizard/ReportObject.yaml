@@ -1,0 +1,49 @@
+InternalClassType: HtmlReport
+Content: |+1
+ [!current, header, *]
+ #General Information
+ * Model file: F:\\PMGMaster\\Sources\\Libraries\\Tools\\Tools_New_142.spp
+ * GAWizard: .Tools.GAWizard.GAWizard
+ * Generated on: 2018/10/22 10:23:26.6360
+ * Running time of the optimization: 0.0000
+ 
+ ## Model
+ [.Tools.GAWizard.GAWizard,*]
+ #Optimization results
+ #Settings
+ ## Definition of optimization parameter
+ #Settings of the Genetic Algorithm
+ Direction of the Optimization: Minimum
+ Number of Generations: 5
+ Size of Generation: 10
+ Observations per individual: 1
+ # Distributed Simulation
+ Usage of remote simulation machines
+ [.Tools.GAWizard.GAWizard.Dialog.RemoteMachines]
+
+Coordinate3D: [2.3499999999999996,-18.35,0]
+Name: ReportObject
+Origin: 3e6bb821-8286-440a-8406-1fdc63f5b23a
+UUID: f8e31327-e5e3-4e1a-8452-a4b00137ace8
+$IconArray:
+-
+-
+-
+$CustomAttributes:
+-
+ Name: Informations
+ ID: 1
+ DataType: table
+ Value:
+  Comment: ~
+  CommonFormat: false
+  ListFormat:
+   ColumnWidth: 20
+   DataType: string
+   ShowDataType: true
+  Columns:
+-
+ Name: SaveToDirectory
+ ID: 2
+ DataType: string
+ Value: ""

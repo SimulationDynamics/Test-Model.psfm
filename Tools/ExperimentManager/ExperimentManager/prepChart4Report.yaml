@@ -1,0 +1,220 @@
+InternalClassType: Method
+Coordinate3D: [14.05,-34.650000000000006,0]
+Name: prepChart4Report
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- prepare the ChartObj for the HTML_report
+ -- quartile and median: look at http://kortenkamps.net/material/stochastik/Quartile.html
+ -- called by: prepReport_via ShowReport (dialog), EndOfAllExperiments
+ param AttrStr:string->object -- output value to be displayed
+ 
+ var my:real
+ var i,rowRes,n,m,u: integer
+ 
+ var delta:real := 0.08
+ var cNo:integer := 1 -- blue, color for the intervals
+ var k:integer := tmpCharts.yDim + 1
+ var ChartObj:object := Chart.duplicate(current)
+ ChartObj.Coordinate3D := makearray(56 + 3 * k, -0.4, 0.0)
+ result := ChartObj
+ result.label := ""
+ tmpCharts[1,k] := makePathRelative(ChartObj,current)
+ 
+ var OutChartTab:table := ChartObj.meanValueTable
+ var AnnotationsTab:table := ChartObj.Annotationstable
+ OutChartTab.delete({0,0}..{*,*})
+ AnnotationsTab.delete
+ 
+ var detailRes:object := DetailedResults
+ 
+ var str:string := ValueDescriptions.get(AttrStr)
+ var colRes:integer := detailRes.getColumnNo(str)
+ if colRes < 0
+ 	print "Please check the output value \\"",AttrStr,"\\" (\\"",str,"\\")."
+ 	return
+ end
+ var isAttrTime:boolean := (detailRes.getDataType(colRes) = "time")
+ 
+ k := 0
+ for i := 1 to ExpTable.yDim
+ 	if ExpTable[1,i] AND (detailRes[1,i] /= void)  -- if active experiment with results
+ 		k += 1
+ 		OutChartTab[0,k] := detailRes[0,i]
+ 	end
+ next
+ if UsingRules
+ 	while i < NumRulesExp
+ 		i += 1
+ 		k += 1
+ 		OutChartTab[0,k] := ExpTable.getExpID(i)
+ 	end
+ else
+ 	if OutChartTab.YdimIndex = 0
+ 		OutChartTab[0,1] := detailRes[0,1]
+ 	end
+ end
+ 
+ colRes := detailRes.getColumnNo(AttrStr)
+ if colRes > 0
+ 	OutChartTab.dataType := detailRes.getDataType(AttrStr)
+ 	--unitStr := getunit(detailRes[colRes,1]);  -- Note that tablefile[1,1]/m/s is confusing
+ end
+ 
+ -- Title of the ChartObj
+ if ChartType = "MinMaxDiagram"
+ 	-- Min-max intervals
+ 	if MinMaxWithQuartiles
+ 		str := rootfolder.Localization.getText(229) -- Min-Max intervals with quartiles
+ 	else
+ 		str := rootfolder.Localization.getText(230) -- Min-Max intervals
+ 	end
+ else -- Confidence intervals
+ 	str := rootfolder.Localization.getText(345)
+ end
+ ChartObj.Title := str
+ 
+ ChartObj.legendLocation := "(Off)"
+ ChartObj.yLabel  := AttrStr --  when strLen(unitStr)>0 then to_str(AttrStr,"/",unitStr) else AttrStr;
+ OutChartTab[1,0] := AttrStr
+ 
+ -- calc conf int
+ n := numRuns -- sample size (# observations)
+ k := 1
+ 
+ var showConf:boolean := (ChartType = "ConfidenceDiagram")
+ var showQuartiles:boolean := (NOT showConf) AND MinMaxWithQuartiles AND (n > 2)
+ 
+ var yScaleMin:real := 1E300
+ var yScaleMax:real := -1E300
+ 
+ for var ExpNo := 1 to OutChartTab.YDimIndex
+ 	rowRes := detailRes.getRowNo(OutChartTab[0,ExpNo])
+ 	if detailRes[colRes+6,rowRes]/=void  -- no results for this experiment
+ 
+ 		var oTab:table := detailRes[colRes+6,rowRes].copy -- all observations
+ 		if oTab.yDim>0
+ 			if isAttrTime
+ 				if detailRes[colRes,rowRes]=void then my :=0 else
+ 					my := str_to_time(detailRes.asString(colRes,rowRes))
+ 				end
+ 			else
+ 				my := str_to_num(detailRes.asString(colRes,rowRes))
+ 			end
+ 			var stdDev:real := detailRes[colRes+1,rowRes]
+ 			yScaleMax := max(yScaleMax,my)
+ 			yScaleMin := min(yScaleMin,my)
+ 			OutChartTab[k,ExpNo] := detailRes[colRes,rowRes] -- main curve
+ 			if stdDev > 0
+ 
+ 		  		var minVal,maxVal,Q1,Q2,Q3:real
+ 				if showConf
+ 					if isAttrTime
+ 						minVal := str_to_time(detailRes.asString(colRes+4,rowRes))-- left conf
+ 						maxVal := str_to_time(detailRes.asString(colRes+5,rowRes))-- right conf
+ 					else
+ 						minVal := str_to_num(detailRes.asString(colRes+4,rowRes))-- left conf
+ 						maxVal := str_to_num(detailRes.asString(colRes+5,rowRes))-- right conf
+ 					end						-- meaning of the columns: '0=Vertical','Value','From','To','Color','Style','Text'
+ 					AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 0, ExpNo,minVal,maxVal,cNo,0 )
+ 					AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, minVal, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 					AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, maxVal, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 
+ 				else -- min-max
+ 					if isAttrTime
+ 						minVal := str_to_time(detailRes.asString(colRes+2,rowRes))-- min
+ 						maxVal := str_to_time(detailRes.asString(colRes+3,rowRes))-- max
+ 					else
+ 						minVal := str_to_num(detailRes.asString(colRes+2,rowRes))-- min
+ 						maxVal := str_to_num(detailRes.asString(colRes+3,rowRes))-- max
+ 					end
+ 
+ 					if showQuartiles
+ 						for var g := oTab.ydim downto 1
+ 							if oTab[1,g]=void
+ 								oTab.cutrow(g)
+ 							end
+ 						next
+ 						n := oTab.ydim
+ 
+ 						oTab.sort(1,"up")
+ 						m := n div 2
+ 						u := n div 4
+ 
+ 						if isAttrTime
+ 							switch n mod 4
+ 							case 0 	-- 4,8,12
+ 								Q2 := (str_to_time(oTab.asString(1,m))   + str_to_time(oTab.asString(1,m+1)))/2
+ 								Q1 := (str_to_time(oTab.asString(1,u))   + str_to_time(oTab.asString(1,u+1)))/2
+ 								Q3 := (str_to_time(oTab.asString(1,m+u)) + str_to_time(oTab.asString(1,m+u+1)))/2
+ 							case 1  -- 5,9
+ 								Q2 := str_to_time(oTab.asString(1,m+1))
+ 								Q1 := (str_to_time(oTab.asString(1,u))     + str_to_time(oTab.asString(1,u+1)))/2
+ 								Q3 := (str_to_time(oTab.asString(1,m+u+1)) + str_to_time(oTab.asString(1,m+u+2)))/2
+ 							case 2  -- 6,10
+ 								Q2 := (str_to_time(oTab.asString(1,m)) + str_to_time(oTab.asString(1,m+1)))/2
+ 								Q1 := str_to_time(oTab.asString(1,u+1))
+ 								Q3 := str_to_time(oTab.asString(1,m+u+1))
+ 							case 3  -- 3,7,11
+ 								Q2 := str_to_time(oTab.asString(1,m+1))
+ 								Q1 := str_to_time(oTab.asString(1,u+1))
+ 								Q3 := str_to_time(oTab.asString(1,m+u+2))
+ 							end
+ 						else
+ 							switch n mod 4
+ 							case 0 	-- 4,8,12
+ 								Q2 := (str_to_num(oTab.asString(1,m))   + str_to_num(oTab.asString(1,m+1)))/2
+ 								Q1 := (str_to_num(oTab.asString(1,u))   + str_to_num(oTab.asString(1,u+1)))/2
+ 								Q3 := (str_to_num(oTab.asString(1,m+u)) + str_to_num(oTab.asString(1,m+u+1)))/2
+ 							case 1  -- 5,9
+ 								Q2 := str_to_num(oTab.asString(1,m+1))
+ 								Q1 := (str_to_num(oTab.asString(1,u))     + str_to_num(oTab.asString(1,u+1)))/2
+ 								Q3 := (str_to_num(oTab.asString(1,m+u+1)) + str_to_num(oTab.asString(1,m+u+2)))/2
+ 							case 2  -- 6,10
+ 								Q2 := (str_to_num(oTab.asString(1,m)) + str_to_num(oTab.asString(1,m+1)))/2
+ 								Q1 := str_to_num(oTab.asString(1,u+1))
+ 								Q3 := str_to_num(oTab.asString(1,m+u+1))
+ 							case 3  -- 3,7,11
+ 								Q2 := str_to_num(oTab.asString(1,m+1))
+ 								Q1 := str_to_num(oTab.asString(1,u+1))
+ 								Q3 := str_to_num(oTab.asString(1,m+u+2))
+ 							end
+ 						end
+ 
+ 						-- min-max with boxplots:
+ 						-- meaning of the columns: '0=Vertical','Value','From','To','Color','Style','Text'
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 0, ExpNo,Q3,maxVal,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 0, ExpNo,minVal,Q1,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 0, ExpNo + delta,Q1,Q3,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 0, ExpNo - delta,Q1,Q3,cNo,0 )
+ 
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, Q1, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, Q2, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, Q3, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, maxVal, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, minVal, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 
+ 					else -- min-max without boxplots:
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 0, ExpNo,minVal,maxVal,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, minVal, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 						AnnotationsTab.writeRow(1, AnnotationsTab.ydim + 1, 1, maxVal, ExpNo - delta, ExpNo + delta,cNo,0 )
+ 					end
+ 				end
+ 
+ 				yScaleMax := max(yScaleMax,maxVal)
+ 				yScaleMin := min(yScaleMin,minVal)
+ 			end -- if stdDev > 0
+ 		end
+ 
+ 	end -- no results for this experiment
+ next -- ExpNo
+ 
+ my := (yScaleMax + yScaleMin)/2
+ delta := (yScaleMax - my) * 1.05
+ ChartObj.yScaleMax := my + delta
+ ChartObj.yScaleMin := my - delta
+ ChartObj.Annotations.delete
+ ChartObj.Annotations := ChartObj.Annotations
+ ChartObj.Annotations.insertList(1,1, AnnotationsTab.copy({1,1}..{7,*}))
+RandomSeed: 195
+UUID: b1e5491f-e17f-4459-8d4c-cb1aacec8435

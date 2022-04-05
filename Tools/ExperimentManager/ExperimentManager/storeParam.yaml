@@ -1,0 +1,53 @@
+InternalClassType: Method
+Coordinate3D: [0.69999999999999929,-24.1,0]
+Name: storeParam
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- store the current values of all input values in column 2 of tablefile 'Kind_Input'
+ -- called by: menu 'Tools' of the dialog, Start (after the query)
+ var obj:object := Kind_input
+ var s,AttrName:string
+ var p:integer
+ var o:object
+ 
+ --print "Store the current values of ",obj.yDim," input values."
+ for var j := 1 to obj.yDim
+ 	var orgStr:string := obj[0,j] -- technical notation
+ 	obj[2,j] := to_str(readValue(orgStr))
+ 	if strLpos("[",orgStr) = 0 -- no DataTable or 1D-list
+ 		s := orgStr
+ 		while NOT existsObject(s)
+ 			p := strRpos(".",s)
+ 			AttrName := strCopy(s,p+1,strLen(s))
+ 			s := strCopy(s,1,p-1)
+ 		end
+ 
+ 		o := s
+ 		var CanInherit :boolean := false
+ 		var Inherited  :boolean := false
+ 		if strLpos("(",AttrName) > 0 -- creationTable(1) or erzeugungsTabelle(1)
+ 			if ApplicationVersion >= 16000002 AND o.internalClassname = "NwWorkerPool"
+ 				o.getCreationTable(void,Inherited) -- Determine the inheritance of the creation table of a WorkerPool
+ 				CanInherit := true
+ 			end
+ 
+ 		else
+ 			if o.internalClassname = "NwData"
+ 				AttrName := "Value"
+ 			end
+ 			o.getAttribute(AttrName,Inherited,CanInherit) -- detect the inheritance of the attribute
+ 		end
+ 
+ 		if CanInherit
+ 			if Inherited
+ 				obj[3,j] := true
+ 			else
+ 				obj[3,j] := false
+ 			end
+ 		else
+ 			obj[3,j] := void
+ 		end
+ 	end -- no DataTable or 1D-list
+ next -- j input value
+RandomSeed: 219
+UUID: bbeff2c7-4976-4a13-b712-cbd7be7528cd

@@ -1,0 +1,24 @@
+InternalClassType: Method
+Coordinate3D: [3,-7,0]
+Name: grayDistSimTab
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- grayes the controls on distributed simulation tab
+ param isSet:boolean
+ 
+ GAWizard.setSensitive("RemotesList", isSet)
+ GAWizard.setSensitive("RemotesListTxt", isSet)
+ --	GAWizard.setSensitive("NumProcessTxt", isSet);
+ GAWizard.setSensitive("AddAddress", isSet)
+ GAWizard.setSensitive("RemoveAddress", isSet)
+ GAWizard.setSensitive("QuitAfterTime", isSet)
+ GAWizard.setSensitive("QuitAfterTimeTxt", isSet)
+ GAWizard.setSensitive("LicType", isSet)
+ GAWizard.setSensitive("LicTypeTxt", isSet)
+ GAWizard.setSensitive("LowPrio", isSet)
+ GAWizard.setSensitive("Recording_But", isSet)
+ GAWizard.setSensitive("TestConnection_But", isSet)
+ 
+ GAWizard.setSensitive("SimulateWith3D_CB", isSet)
+RandomSeed: 444
+UUID: f65ec94a-e316-40a1-99af-dd01358fe065

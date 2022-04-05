@@ -1,0 +1,9 @@
+InternalClassType: Comment
+Coordinate3D: [1,-2.5,0]
+Origin: 85e3e7d8-93d8-476e-a36b-d2827919a776
+Text: |+1
+ This is a sample Frame that shows
+ how to model user-defined objects.
+ You can insert this Frame into your
+ model and connect it with Connectors.
+UUID: 71348439-ee39-444e-a76a-075691f2937d

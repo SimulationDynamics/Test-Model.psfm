@@ -1,0 +1,17 @@
+InternalClassType: Method
+Coordinate3D: [15,-39.55,0]
+Name: showSimMachines
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- called by: context menu
+ if ?.usingRemote 
+ 	var MachTab:object := ?.dialog.RemoteMachines
+ 	-- Computer, Number of parallel processes, Number of runs, Total simulation time, Mean running time of a simulation
+ 	MachTab.writeRow(0,0,rootfolder.Localization.getText(165),rootfolder.Localization.getText(97),rootfolder.Localization.getText(168),rootfolder.Localization.getText(169),rootfolder.Localization.getText(170))
+ 	MachTab.openDialogBox(true)
+ 	
+ else --No distributed simulation"
+ 	messageBox(rootfolder.Localization.getText(287),1,4) -- info
+ end
+RandomSeed: 239
+UUID: 0061f76e-ccbd-415e-bb49-b1b5b4fb9f89

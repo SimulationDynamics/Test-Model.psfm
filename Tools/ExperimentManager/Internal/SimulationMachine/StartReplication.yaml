@@ -1,0 +1,23 @@
+InternalClassType: Method
+Coordinate3D: [20.450000000000003,-7.45,0]
+Name: StartReplication
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- Set parameter and start the simulation on the remote computer
+ -- called by: RunProcess, with error handler
+ var eMPlant:any := getInterfaceOfRemoteProcess(eMPlantHandle)
+ if eMPlant /= void 
+ 	eMPlant.ResetSimulation(StartNetwork)
+ 	~.~.M_SetParams(eMPlant, JobId) -- code depends of the wizard (Experimentmanager or GAwizard)
+ 	eMPlant.ResetSimulation(StartNetwork)
+ 	eMPlant.StartSimulation(StartNetwork)
+ 	~.MachinesTable.addLogging("Set parameter and start the simulation", JobId, MachineIndex, false)
+ end
+RandomSeed: 348
+UUID: eae8ebf0-45f5-41ed-9d6f-7c8a9c0322e7
+$CustomAttributes:
+-
+ Name: ErrorHandler
+ ID: 1
+ DataType: object
+ Value: "ErrorHandler"

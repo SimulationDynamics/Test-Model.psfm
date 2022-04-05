@@ -1,0 +1,111 @@
+InternalClassType: Frame
+Coordinate3D: [1.3499999999999996,0,0]
+CreateIn3D: false
+Name: Dialog
+Origin: 30f1bee0-a42e-4b63-87d0-1f1a61fb9766
+UUID: 67a7d112-b64f-40db-a9d0-793d34b0670d
+$CustomAttributes:
+-
+ Name: openBB
+ ID: 1
+ DataType: method
+ RandomSeed: 437
+ Value: |+1
+  /*
+   called by the context menu
+  */
+  ~.openDialog
+
+-
+ Name: sayNoResults
+ ID: 2
+ DataType: method
+ RandomSeed: 436
+ Value: |+1
+  -- called by: 3 buttons
+  -- messageBox: No Optimization results available.
+   --"No Optimization results available."
+  messageBox(rootfolder.Localization.getText(41),1,4) -- info
+-
+ Name: startDatatime
+ ID: 3
+ DataType: datetime
+ Value: 2003-10-17 11:30:26.63100004
+-
+ Name: readyIndividuals
+ ID: 4
+ DataType: integer
+ Value: 0
+-
+ Name: readyObservations
+ ID: 5
+ DataType: integer
+ Value: 0
+-
+ Name: numPenalty
+ ID: 6
+ DataType: integer
+ Value: 0
+-
+ Name: numAlready
+ ID: 7
+ DataType: integer
+ Value: 0
+-
+ Name: showProgressByIcon
+ ID: 8
+ DataType: method
+ RandomSeed: 435
+ Value: |+1
+  -- show the progress by the icons "Icon0",...,"Icon8"
+  var ApplObj:object := ~
+  var GAOpt:object := ApplObj.GaOptimization
+  var GenSize:integer := GAOpt.GenerationSize
+  -- current state:
+  var GenNo:integer := ApplObj.currGeneration
+  var IndNo:integer := ApplObj.individualNum
+  
+  var n:integer
+  if GenNo = 1 
+  	n := IndNo
+  else
+  	n := GenSize + 2 * (GenNo - 2) * GenSize + IndNo
+  end
+  
+  var totalNum:integer := (2 * GAOpt.NumGenerations - 1) * GAOpt.GenerationSize
+  var iconNo:integer := ceil(8 * n/totalNum) -- round down of a number in [0,8)
+  -- iconNo = 1,...,7
+  -- 8 is shown ones after the last run
+  if 0 < iconNo AND iconNo < 9 
+  	ApplObj.selected := false
+  	var iconStr:string := to_str("icon",iconNo)
+  	ApplObj.CurrIcon := iconStr
+  	if ApplObj._3D.exists
+  		ApplObj._3D.VisibleGraphicGroups := makeArray(iconStr)
+  	end
+  end
+-
+ Name: wait4generationChange
+ ID: 9
+ DataType: boolean
+ Value: false
+$UserPopupMenu:
+ Active: true
+$Nodes:
+- 50e90ba2-43b6-48bf-86a6-47c3778ef686
+- 5c22802a-f7ef-4425-aaae-b1303fbf9ade
+- c6c0ab14-74b9-47b9-a630-42c0417c1185
+- 5f931ce8-1e0b-47f1-87c5-143042d3a54f
+- 6cd110a2-0194-4847-92a5-f6548483ea83
+- 90ab273b-e2ff-4007-b1cd-15a405820d45
+- b1fca06e-4eaa-43cd-a5dc-e142c0d96c8b
+- d3e6e3ff-f1a4-4cea-83ef-d77c0f22f88e
+- c90f9481-e288-42aa-ae7b-cee97d17278e
+- ef786c7a-0c3c-4e2b-8608-82a5869b4c4f
+- 5eb49372-3ae0-4ca0-a40e-f060a400cb5b
+- 644325bf-fdd4-41f3-874e-b0082b32bf47
+- f65ec94a-e316-40a1-99af-dd01358fe065
+- 3e090c13-b568-4217-905d-d67685cff5ce
+- 286e385b-bbb4-41eb-a364-a776fb384680
+- 069344b8-592c-451a-ada9-abcc9d5d255e
+- 61745047-a2d8-47ec-8c8e-342c1a686166

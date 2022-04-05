@@ -1,0 +1,12 @@
+InternalClassType: Method
+Coordinate3D: [19,-7,0]
+Name: openBB
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ /*
+ called by: context menu 'Open'
+ */
+ ?.openDialog
+
+RandomSeed: 495
+UUID: 973bd5b1-11b3-4b1b-84da-a9099ed1e077

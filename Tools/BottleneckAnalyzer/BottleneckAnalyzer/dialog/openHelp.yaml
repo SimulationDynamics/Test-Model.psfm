@@ -1,0 +1,10 @@
+InternalClassType: Method
+Coordinate3D: [10,10,0]
+Name: openHelp
+Origin: f1b15c85-c3f7-453f-99df-af36043a3091
+Program: |+1
+ -- called by context menu and dialog
+ dialog.callback("HelpObject_Menu")
+
+RandomSeed: 70
+UUID: 426bf352-04bd-484a-9367-3b0978ef73b9

@@ -1,0 +1,10 @@
+InternalClassType: Method
+Coordinate3D: [55.050000000000004,-32.25,0]
+Name: GetNumberOfObservations
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -> integer
+ 
+ return numRuns
+RandomSeed: 480
+UUID: 856b0646-1946-4ec4-929b-73f93253ab8a

@@ -1,0 +1,18 @@
+InternalClassType: Method
+Coordinate3D: [55.050000000000004,-29.25,0]
+Name: GetNumberOfExperiments
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -> integer
+ 
+ var numExperiments:integer
+ 
+ for var i := 1 to ExpTable.yDim
+ 	if ExpTable[1,i]
+ 		numExperiments += 1
+ 	end
+ next
+ 
+ return numExperiments
+RandomSeed: 401
+UUID: 216ab2ad-4356-454e-98a9-c4ebd6f0f1df

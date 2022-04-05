@@ -1,0 +1,16 @@
+InternalClassType: Method
+Coordinate3D: [-1,13,0]
+Name: DragDrop
+Origin: f1b15c85-c3f7-453f-99df-af36043a3091
+Program: |+1
+ param Onstring : string
+ var Onobject: object := Onstring
+ 
+ if onobject.getAttrNo("_BNanalysed") = 0
+ 	onobject.createAttr("_BNanalysed","boolean")
+ end
+ -- Should this object be considered by the bottleneck analyzer?
+ var message: string := rootfolder.Localization.getText(71)
+ OnObject._BNanalysed := messageBox(message,48,12) = 16
+RandomSeed: 65
+UUID: 5409dff8-cdb2-4a96-a2ea-c88955c6851e

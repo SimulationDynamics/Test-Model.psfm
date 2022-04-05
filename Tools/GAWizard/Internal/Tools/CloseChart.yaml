@@ -1,0 +1,15 @@
+InternalClassType: Method
+Coordinate3D: [23,-4,0]
+Name: CloseChart
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- interaction close
+ var ButName:string;var dialogObj:object
+ 
+ ?.isOpen:=false
+ dialogObj := ?.~.Dialog.GAWizard
+ ButName := to_str(?.name,"_B")
+ dialogObj.setCaption(ButName,rootfolder.Localization.getText(5))--"Show"
+
+RandomSeed: 489
+UUID: 4e7000a7-9f8a-44b4-b5e0-4529023c4b4f

@@ -1,0 +1,24 @@
+InternalClassType: DataList
+CloseCtrl: "RootFolder.Internal.Tools.closeTab"
+Coordinate3D: [44.300000000000004,-22.35,0]
+Name: Recording
+Origin: e90fcb3e-7d7c-41ab-8986-a0f82e91389a
+UUID: ba12c308-a6c4-4578-add4-8c67dae79e62
+$CustomAttributes:
+-
+ Name: isOpen
+ ID: 1
+ DataType: boolean
+ Value: false
+-
+ Name: remoteErrors
+ ID: 2
+ DataType: boolean
+ Value: false
+$Data:
+ ListFormat:
+  ColumnWidth: 99
+  DataType: string
+  MaxXDim: 1
+  ShowDataType: true
+ Column:

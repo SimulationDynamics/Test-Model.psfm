@@ -1,0 +1,49 @@
+InternalClassType: Method
+Coordinate3D: [10,13,0]
+Name: prepareObserver
+Origin: 8fb4bb23-401d-470d-a9b4-16c7ef036345
+Program: |+1
+ -- called by: reset, init, checkbox 'Monitoring'
+ param add:boolean
+ var obj:object
+ var tab:table := UsageProfile.UtilizationTable
+ UsageProfile.UtilizationTable := tab
+ tab.delete({1,0}..{*,*})
+ 
+ for var j := EnergyConsumers.YDimIndex downto 1 
+ 	var str:string := EnergyConsumers[0,j]
+ 	obj := to_str("~.",str)
+ 	if obj = void 
+ 		EnergyConsumers.cutRow(j)
+ 	else
+ 		tab[j,0] := str
+ 	end
+ next
+ UsageProfile.UtilizationTable := tab
+ 
+ var absPathOfMethod:string := to_str("*",&observeEnergyState)-- add as object link
+ 
+ if add 
+ 	ObjectsWithObserver.delete
+ 	if MonitoringActive 
+ 		for var j := 1 to EnergyConsumers.YDimIndex 
+ 			obj := to_str("~.",EnergyConsumers[0,j])
+ 			ObjectsWithObserver.append(obj) -- as object link (with *)                       
+ 			--obj.addObserver("EnergyCurrentState",absPathOfMethod);  
+ 			obj.addObserver("PowerInput",absPathOfMethod)
+ 		next
+ 		-- Monitoring all changes of $1 objects by the wizard '$2' in the frame $3 may have negative effects on run time of your model.
+ 		print rootfolder.localization.getMessage(64, ObjectsWithObserver.dim,current.name,current.~)
+ 		updateConsumption
+ 	end
+ 
+ else -- called by reset
+ 	
+ 	var a:object[]
+ 	copyObjectsToClipboard(a)
+ 			
+ 	removeAllPowerInputObserver(root)
+ 	
+ end
+RandomSeed: 40
+UUID: d74a6593-ae57-4b29-9103-7eee3c807ace

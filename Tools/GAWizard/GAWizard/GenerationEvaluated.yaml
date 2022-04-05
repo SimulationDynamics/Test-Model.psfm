@@ -1,0 +1,10 @@
+InternalClassType: Method
+Coordinate3D: [6,-22.35,0]
+Name: GenerationEvaluated
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- user defined control before the creation of the next generation
+ 
+ var allKids:table := Individuals
+RandomSeed: 401
+UUID: cc12ea5f-97f6-4a94-b424-650fb926fdbc

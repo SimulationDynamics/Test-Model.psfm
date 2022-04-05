@@ -1,0 +1,24 @@
+InternalClassType: Method
+Coordinate3D: [1.3499999999999996,-12,0]
+Name: alreadyEvaluated
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- determine whether the individual_ is already evaluated
+ -- check the table 'StatisticalEvaluation' 
+ -- Called by: nextIndividual (not distributed simulation), evaluate (distributed simulation)
+ -- indNo: number of the neew generated individual
+ -- rowStatEval: row of StatisticalEvaluation
+ param indNo, rowStatEval:integer->boolean
+ 
+ var origID:integer := findID(rowStatEval)
+ result := ( origID < rowStatEval) -- already evaluated
+ 
+ if result 		
+ 	StatisticalEvaluation[7,rowStatEval] := origID -- ID < row
+ 	if NOT UsingRemote 
+ 		copyIndividual(origID, rowStatEval, indNo) -- fromID, toID, IndividualNo
+ 	end
+ end
+
+RandomSeed: 406
+UUID: e52b12ca-1067-4a84-8426-1108b99f87fd

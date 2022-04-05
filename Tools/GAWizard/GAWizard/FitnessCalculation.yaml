@@ -1,0 +1,42 @@
+InternalClassType: DataTable
+Coordinate3D: [38,-12,0]
+Label: ""
+Name: FitnessCalculation
+Origin: 1f119795-db13-4199-91f7-4d974b1422ad
+UUID: cb4feede-32f9-487e-8fa0-a89d8d4d1104
+$Data:
+ Comment: ~
+ ListFormat:
+  ColumnIndex: true
+  ColumnWidth: 20
+  DataType: string
+  MaxXDim: 4
+  ShowDataType: true
+  ColumnFormat:
+  -
+   Index: 1
+   Width: 36
+  -
+   Index: 2
+   Alignment: "Right"
+   DataType: real
+   Width: 11
+  -
+   Index: 3
+   Alignment: "Right"
+   DataType: real
+   FormatString: "-15.2"
+  -
+   Index: 4
+   Alignment: "Right"
+   DataType: real
+   FormatString: "-15.2"
+  RowFormat:
+  -
+   Index: 0
+   FontSize: 1
+   FontColor: 0xa00000
+   Color: 0xc0c0c0
+   Hidden: false
+ ColumnIndex: [string,5,~,"Zielgröße","Wert","Gewichtung","Summe"]
+ Columns:

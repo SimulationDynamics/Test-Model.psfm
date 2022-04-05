@@ -1,0 +1,10 @@
+InternalClassType: Method
+Coordinate3D: [7.75,-39.55,0]
+Name: ShowResults
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- called by: context menu
+ Dialog.NumberRepresentation(Results)
+ Results.openDialog
+RandomSeed: 240
+UUID: 080d4f3e-d2fd-446f-ae40-cb84ad5d660e

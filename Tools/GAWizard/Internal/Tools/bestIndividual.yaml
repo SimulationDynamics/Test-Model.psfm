@@ -1,0 +1,15 @@
+InternalClassType: Method
+Coordinate3D: [23,-10,0]
+Name: bestIndividual
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- called by: userPopupMenu
+ 
+ var APPObj:object := ?
+ if APPObj.bestIndividuals.yDim > 0 
+ 	rootfolder.internal.Tools.openTab(APPObj.bestIndividuals,APPObj.Dialog.GAwizard)
+ else -- "No optimization were performed."
+ 	messageBox(rootfolder.Localization.getText(40),1,4) -- info
+ end
+RandomSeed: 487
+UUID: c017d83d-2175-4af2-b736-9b124f6012bc

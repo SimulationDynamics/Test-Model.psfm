@@ -1,0 +1,29 @@
+InternalClassType: DataTable
+Coordinate3D: [-13.100000000000001,7,0]
+Name: ConsumersDragDrop
+Origin: 8b3ec805-3f5f-4fe5-a060-563978e65518
+UUID: 116c445b-4589-46de-b42b-029b7090ebad
+$Data:
+ Comment: ~
+ ListFormat:
+  ColumnIndex: true
+  ColumnWidth: 40
+  DataType: string
+  MaxXDim: 1
+  ShowDataType: true
+  ColumnFormat:
+  -
+   Index: 0
+   Width: 20
+  -
+   Index: 1
+   Alignment: "Right"
+   DataType: object
+  RowFormat:
+  -
+   Index: 0
+   ReadOnly: true
+   Alignment: "Center"
+   Hidden: false
+ ColumnIndex: [string,2,~,"Energy Consumers"]
+ Columns:

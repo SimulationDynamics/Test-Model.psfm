@@ -1,0 +1,77 @@
+InternalClassType: Frame
+Coordinate3D: [0.5,0,0]
+CreateIn3D: false
+Name: Dialog
+Origin: 3c0a1952-a315-4fd6-92f9-ef37ac1e34a2
+ReplacementMode: "exchange"
+UUID: 3fcf972f-db9d-49c8-a424-d1c5ecf8fc45
+$CustomAttributes:
+-
+ Name: startDateExpRun
+ ID: 1
+ DataType: datetime
+ Value: 1970-1-1
+-
+ Name: showProgressByIcon
+ ID: 2
+ DataType: method
+ RandomSeed: 306
+ Value: |+1
+  -- show the progress by the icons "Icon0",...,"Icon8"
+  param ExpNo,RunNo:integer
+  
+  var totalNum:integer
+  var ApplObj:object := ~
+  
+  if ApplObj.usingRules 
+  	totalNum := max(1, ApplObj.NumRulesExp)
+  elseif ~.usingTables 
+  	totalNum := max(1, ApplObj.ExpTable.yDim)
+  else
+  	totalNum := 1
+  end
+  
+  var j:integer := max(1, ApplObj.numRuns) -- number of observations
+  totalNum := totalNum * j
+  var n:integer := (ExpNo - 1) * j + RunNo
+  
+  var iconNo:integer := floor(8 * n/totalNum) -- round down of a number in [0,8)
+  -- iconNo = 0,...,7
+  -- 8 is shown ones after the last run
+  if -1 < iconNo AND iconNo < 9 
+  	ApplObj.selected := false
+  	var iconStr:string := to_str("icon",iconNo)
+  	ApplObj.CurrIcon := iconStr
+  	if ~._3D.exists
+  		~._3D.VisibleGraphicGroups := makeArray(iconStr)
+  	end
+  end
+-
+ Name: restoring
+ ID: 3
+ DataType: boolean
+ Value: false
+-
+ Name: StudyExecuted
+ ID: 4
+ DataType: boolean
+ Value: false
+$Nodes:
+- 292826bc-6981-4fde-9f67-f25c99fb332d
+- 4af1c685-089d-4be6-83d1-5f78674ba5ab
+- 75563384-9fc2-4846-9d99-0848be148a65
+- e0f86faa-a1af-446f-9763-fb3a5ce73fb7
+- f2a81089-5a44-4199-95ee-b872e1bf926a
+- 09ce467e-05be-405f-b6c8-2dc9908aec5b
+- 85374093-312f-4ab4-b7df-7bc2a5627ff8
+- 33bb89d1-1efe-4fb3-8435-287580df2439
+- b0aa1ea9-6a85-466d-a869-b9a4188c43d4
+- cebeede0-5697-401d-ac82-c93a03b2c6b2
+- f3fa9e8d-f661-4fcc-b443-bd757a28613c
+- 72ced05b-b98a-483b-ad3d-3814e8b63a8c
+- a329964e-6d9b-4c65-b09d-70df7a819e59
+- 022898e3-cdeb-4b90-8b17-eb29938901f6
+- f7e44a9b-c817-4c89-b2d6-5b8f69f55a90
+- 50cfb462-a779-43ef-ba80-26cf1b936f86
+- 21161e55-0ea4-4c02-8c79-766eaeb98985
+- 22792b79-ec32-4364-afb3-c9e37a720cf9

@@ -1,0 +1,62 @@
+InternalClassType: DataTable
+Coordinate3D: [56.2,-15.05,0]
+Name: BestParam
+Origin: 59ce8203-57eb-41d0-a80a-b57ec8a03ada
+UUID: 3a718bdf-11bb-4683-a6bd-8fb1ea5a6091
+$CustomAttributes:
+-
+ Name: deleteTmpTables
+ ID: 1
+ DataType: method
+ RandomSeed: 174
+ Value: |+1
+  -- called by:_prepareReport,_resetWizard
+  var t:table := self.~.tmpTables
+  for var j := 1 to t.yDim 
+  	if t[1,j] /= void 
+  		t[1,j].deleteObject
+  	end
+  next
+  t.delete
+-
+ Name: tmpTables
+ ID: 2
+ DataType: table
+ Value:
+  Comment: ~
+  CommonFormat: false
+  ListFormat:
+   ColumnWidth: 20
+   DataType: string
+   ShowDataType: true
+   ColumnFormat:
+   -
+    Index: 1
+    DataType: object
+  Columns:
+-
+ Name: OutputValue
+ ID: 3
+ DataType: string
+ Value: ""
+$Data:
+ Comment: ~
+ ListFormat:
+  Alignment: "Right"
+  ColumnIndex: true
+  ColumnWidth: 20
+  DataType: string
+  RowIndex: true
+  ShowDataType: true
+  ColumnFormat:
+  -
+   Index: 0
+   Alignment: "Center"
+   Hidden: false
+   Width: 8
+  RowFormat:
+  -
+   Index: 0
+   Alignment: "Center"
+ ColumnIndex: [string,1,"Experiment"]
+ Columns:

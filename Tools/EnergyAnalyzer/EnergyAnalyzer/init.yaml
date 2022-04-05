@@ -1,0 +1,13 @@
+InternalClassType: Method
+Coordinate3D: [-7.1000000000000005,13,0]
+Name: init
+Origin: 8fb4bb23-401d-470d-a9b4-16c7ef036345
+Program: |+1
+ -- fill table EnergyConsumers according to the selection
+ if MonitoringActive 
+ 	prepareObserver(true)
+ end
+ updateConsumption
+
+RandomSeed: 59
+UUID: 1557cacd-2be1-4246-b17d-14be671993b1

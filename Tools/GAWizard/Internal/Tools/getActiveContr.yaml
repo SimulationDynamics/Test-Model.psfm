@@ -1,0 +1,22 @@
+InternalClassType: Method
+Coordinate3D: [2,-1,0]
+Name: getActiveContr
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ param contrObj:object->object
+ 
+ var rootObj:object := contrObj.rootframe
+ for var j := 1 to rootObj.numNodes 
+ 	var obj:object := rootObj.node(j)
+ 	if obj.internalClassName ="Network" AND
+ 	    obj.getAttrNo("objType")>0 AND
+ 	    obj.objType ="GAwizard" AND
+ 	    contrObj /= obj AND
+ 	    obj.optimRuns
+ 		--"There is another active GA-Wizard"
+ 		messageBox(to_str(rootfolder.Localization.getText(29)," '",obj.name,"'"),1,4) -- info
+ 		result := obj
+ 	end
+ next
+RandomSeed: 499
+UUID: ad894793-2f7f-4f1b-9b8e-36e199e4339f

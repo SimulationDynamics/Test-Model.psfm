@@ -1,0 +1,37 @@
+InternalClassType: HtmlReport
+Content: ""
+Coordinate3D: [1.6499999999999986,-35.900000000000006,0]
+Label: "ExperimentManager"
+Name: ReportObject
+Origin: 7e45fd28-8924-4eb3-ad07-596f58ed8bac
+TocLevels: 3
+UUID: 5b98af18-c309-497b-8c29-a1088af58b82
+$CustomAttributes:
+-
+ Name: DrainStatistics
+ ID: 1
+ $DataType: method
+ RandomSeed: 207
+-
+ Name: zDrainStatistics
+ ID: 2
+ $DataType: method
+ RandomSeed: 206
+-
+ Name: SaveToDirectory
+ ID: 3
+ DataType: string
+ Value: ""
+-
+ Name: Informations
+ ID: 4
+ DataType: table
+ Value:
+  Comment: ~
+  CommonFormat: false
+  ListFormat:
+   ColumnWidth: 20
+   DataType: string
+   ShowDataType: true
+  Columns:
+$WindowSize: [861,482]

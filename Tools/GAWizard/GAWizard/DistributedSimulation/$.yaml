@@ -1,0 +1,24 @@
+InternalClassType: Frame
+Coordinate3D: [32.3,-9,0]
+Name: DistributedSimulation
+Origin: 9cd50098-1efd-4b48-aaee-2d5d45c1f631
+UUID: c5b4cbad-a5ae-4edf-bbc4-8906963a3eaa
+$CustomAttributes:
+-
+ Name: mainDialog
+ ID: 1
+ $DataType: object
+ Value: "~.Dialog.GAWizard"
+$Nodes:
+- ac105228-bb9f-4ac1-a1a9-87349fc28fd7
+- ddc822b7-4095-49cb-b5a3-d1ad1ee16c17
+- f27f7242-d1d9-4452-9f33-4e116ed94015
+- 4014b9f8-2568-4f5c-8735-3d7f61f57859
+- c4275750-4ac5-4a9a-bbb9-c4e04c87d4e5
+- bddd8a92-e511-49ec-9416-7282dfa94023
+- 8fc16d73-1e94-498a-9a43-aac8be4bd2d1
+- ff1a6281-3f83-48a3-b1df-2d6a854aec89
+- e937bb14-e27c-4aa7-9bbb-797f1051374b
+- af860860-65b5-41d0-a1a8-364021e46d46
+- b4f50a93-6ebb-4a16-bafa-1c701b728f3b
+- 7ed5234d-02e1-4235-84a6-5bd9e088733e

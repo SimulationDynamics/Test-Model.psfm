@@ -1,0 +1,27 @@
+InternalClassType: Variable
+ChangePathCtrl:
+Color: 32768
+Comment: "Semaphore for multiple processes"
+ConstructorCtrl:
+Coordinate3D: [1,-1,0]
+CreateIn3D: false
+DataType: boolean
+DecimalPlaces: -1
+DestructorCtrl:
+DragDropCtrl:
+Font: 1
+HasInitValue: false
+InitCtrl:
+MoveInFrameCtrl:
+MoveToFolderCtrl:
+Name: sema
+OpenCtrl:
+PlausibilityCtrl:
+RenameCtrl:
+ShowDataType: false
+ShowUnit: true
+StatisticsActive: false
+SupportDDEhotlinks: false
+Transparent: false
+UUID: 44b9eeaa-61cb-4592-b086-f5a9356a78e2
+Value: false

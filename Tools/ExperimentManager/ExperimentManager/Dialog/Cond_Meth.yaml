@@ -1,0 +1,18 @@
+InternalClassType: Method
+Coordinate3D: [-7,4,0]
+Name: Cond_Meth
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- submethod of Experiments.callback, button Condition Method pressed
+ var rName:string;var rTab:object;var row:integer
+ 
+ rName := @.activeRuleName
+ rTab := ~.Rules.Rules
+ rTab.setCursor(2,1)
+ rTab.find({2,1}..{2,*},rName)
+ row := rTab.cursorY
+ -- 22.03.04 8.0.0 (jek): ref is not necessary here
+ ~.Rules.Rules[4,row].openDialog
+
+RandomSeed: 322
+UUID: 85374093-312f-4ab4-b7df-7bc2a5627ff8

@@ -1,0 +1,24 @@
+InternalClassType: Method
+Coordinate3D: [14.7,-5.5,0]
+Name: drawBar
+Origin: f1b15c85-c3f7-453f-99df-af36043a3091
+Program: |+1
+ param obj : object, typeStr:string, factor : real
+ 
+ var ZeropointX,ZeropointY,IconLen,IconHeight:integer
+ 
+ obj.getBoundingBox(ZeropointX,ZeropointY,IconLen,IconHeight)
+ ZeropointX := ZeropointX + IconLen/2 - 20
+ ZeropointY := ZeropointY - 10
+ 		
+ if ZeropointY - 40 < 10 
+ 	ZeropointY := ZeropointY + 70 + IconHeight
+ end
+  var color:integer := colors[1,typeStr]
+ var y_Null:integer := ZeropointY - 1
+  var x_Null:integer := ZeropointX + colors[6,typeStr]
+  
+ -- reduce the width of the bars from 6 to 4, 3
+ obj.~.drawRectangle(layer_of_chart - 1,x_Null,y_Null,3,-round(40*factor),color,-1)
+RandomSeed: 61
+UUID: 22f6c4a7-928f-4373-84db-f8664710f2b6

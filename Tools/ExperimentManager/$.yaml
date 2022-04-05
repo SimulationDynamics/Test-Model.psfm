@@ -1,0 +1,42 @@
+InternalClassType: Folder
+ChangePathCtrl:
+Coordinate3D: [0,0,0]
+DestructorCtrl:
+MoveToFolderCtrl:
+Name: ExperimentManager
+PermitDeleteCtrl:
+RenameCtrl:
+RootFolder: true
+UUID: e07b35ff-95ea-475e-9049-fb2fdc71cc86
+3D:
+ BackgroundColor: -1
+Password:
+LibInfo:
+ Name: "Experiment Manager"
+ Version: "16.0.3"
+ Description: |+1
+  Runs several experiments\r
+  with the simulation model.\r
+  $German$Experimentverwalter\r
+  Führt mehrere Experimentläufe\r
+  mit dem Simulationsmodell durch.\r
+  $Japanese$ExperimentManager\r
+  シミュレーションモデルを用いた\r
+  幾つかのエクスペリメントを実行します。\r
+  $Chinese$实验管理器\r
+  用仿真模型运行几个\r
+  试验。\r
+  $Russian$ExperimentManager\r
+  Запускает несколько экспериментов\r
+  с моделью симуляции.\r
+  $Hungarian$ExperimentManager\r
+  Több kísérlet futtatása\r
+  a szimulációs modellen.
+ AlternativePaths: "$German$.Tools.Experimentverwalter"
+ Requires3D: false
+ ProhibitAccess: false
+$Nodes:
+- 37eb3867-3fc6-452b-b3d7-c1858776233d
+- d3aac39e-c776-493b-bbee-493ed7b83887
+- f13b3a84-e6dd-43ad-974c-6cdca2244fb8
+- deaa91fa-35a6-4909-a141-e59033ed0a5d

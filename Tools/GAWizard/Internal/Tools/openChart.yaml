@@ -1,0 +1,27 @@
+InternalClassType: Method
+Coordinate3D: [19,-4,0]
+Name: openChart
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ /*
+ called by: 
+ */
+ param chartObj,dialogObj:object
+ 
+ var ButName:string;var ApplObj:object
+ 
+ ApplObj := ?.~.~
+ ButName := to_str(chartObj.name,"_B")
+ 
+ if chartObj.active 
+ 	dialogObj.setCaption(ButName,rootfolder.Localization.getText(5))--"Show"
+ 	chartObj.active := false
+ 	chartObj.isOpen:=false
+ else
+ 	chartObj.active := true
+ 	chartObj.isOpen:=false
+ 	dialogObj.setCaption(ButName,rootfolder.Localization.getText(55))--"Close"
+ end
+
+RandomSeed: 488
+UUID: f3b6018d-6a3c-418b-8c84-c0387a1b4f47

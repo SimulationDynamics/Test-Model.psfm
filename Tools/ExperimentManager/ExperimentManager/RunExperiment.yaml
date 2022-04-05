@@ -1,0 +1,43 @@
+InternalClassType: Method
+Coordinate3D: [55.050000000000004,-35.25,0]
+Name: RunExperiment
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ param pExpNum:integer, pObsNum:integer, pResultsFolder:string
+ 
+ RunExperimentFinished := false
+ 
+ -- This process is started for the simulation of a single observation.
+ RescaleActive := true
+ 
+ UsingRemote := true
+ dialog.restoring := false
+ UsingRules := false
+ --UserEvalMethod_:= "" -- User defined evaluation method is impossible since the observation is already computed.
+ UsingTables := true
+ MailAtEnd := false
+ saveHTMLatEnd := false
+ showRuntimeAtEnd := false
+ saveExcelatEnd := false
+ 
+ RescaleResultsFolder := pResultsFolder
+ RescaleExitApplication := false
+ 
+ var expCount:integer
+ 
+ for var i := 1 to ExpTable.yDim
+ 	if ExpTable[1,i]
+ 		expCount += 1
+ 
+ 		if expCount = pExpNum
+ 			currExpNo := i
+ 			exitloop
+ 		end
+ 	end
+ next
+ 
+ currRunNo := pObsNum
+ 
+ EventController.reset
+RandomSeed: 559
+UUID: 944e02fd-00c1-4990-beda-0b3876bffcce

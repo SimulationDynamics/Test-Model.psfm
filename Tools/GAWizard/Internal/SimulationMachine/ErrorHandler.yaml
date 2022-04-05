@@ -1,0 +1,22 @@
+InternalClassType: Method
+Coordinate3D: [4.45,-7.5500000000000007,0]
+Name: ErrorHandler
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ param byref Text: string, MethodName: string, LineNumber: integer ->any
+ 
+ var machTab:object := ~.MachinesTable
+ -- display the last error
+ machTab.writeRow(11,MachineIndex, true, MethodName, LineNumber, Text)
+ 
+ machTab.addLogging(to_str("Method ",MethodName,"(line ",LineNumber,"): ",Text), JobId, MachineIndex, true)
+ 
+ -- resetting is necessary (catching the exception)
+ -- if not, the error is given to the calling method, therefore the calling method continues
+ Text := ""
+ 
+ var sema:object := ~.~.rootfolder.Internal.&sema
+ sema.value := false
+ return void
+RandomSeed: 481
+UUID: d49d0668-b9e4-4df4-af08-7a751a4d8a92

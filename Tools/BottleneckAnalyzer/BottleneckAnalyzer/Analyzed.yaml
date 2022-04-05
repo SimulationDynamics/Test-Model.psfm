@@ -1,0 +1,9 @@
+InternalClassType: Variable
+Coordinate3D: [17.5,-7.3,0]
+DataType: boolean
+HasInitValue: false
+Name: Analyzed
+Origin: 62c25132-379d-48ce-8605-d94402f9ef62
+ShowDataType: false
+UUID: a35db4da-941e-41f7-8886-f9b0ea049cd4
+Value: false

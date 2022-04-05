@@ -1,0 +1,18 @@
+InternalClassType: Method
+Coordinate3D: [23,-1,0]
+Name: makeHTMLreport
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- HTML report
+ -- called by: context menu and the button 'HTML_but' of tab 'Evaluate'
+ 
+ if ~.optimRuns
+ 	wait4generationChange := true -- custom attribute of the frame 'dialog'
+ 	-- It is only reasonable to prepare the report after the evaluations of all individuals of the current generation.
+ else
+ 	~.prepReport
+ 	~.ReportObject.show		
+ 	GAwizard.setCaption("HTML_but", rootfolder.Localization.getText(49)) -- "Report"
+ end
+RandomSeed: 453
+UUID: c6c0ab14-74b9-47b9-a630-42c0417c1185

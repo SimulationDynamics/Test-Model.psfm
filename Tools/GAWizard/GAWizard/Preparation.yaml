@@ -1,0 +1,10 @@
+InternalClassType: Method
+Coordinate3D: [1.3499999999999996,-22.35,0]
+Name: Preparation
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- user defined control before deletion of the the optimization results
+ -- reset the model to the state before the last optimization
+ -- initialize the model for the following optimization
+RandomSeed: 403
+UUID: 85ea843a-be43-494c-82b2-a641cf651aa8

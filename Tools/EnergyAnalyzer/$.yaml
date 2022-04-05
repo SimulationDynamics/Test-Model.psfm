@@ -1,0 +1,35 @@
+InternalClassType: Folder
+ChangePathCtrl:
+Coordinate3D: [1,-4,0]
+DestructorCtrl:
+MoveToFolderCtrl:
+Name: EnergyAnalyzer
+PermitDeleteCtrl:
+RenameCtrl:
+RootFolder: true
+UUID: 029af56b-a041-4d91-97a4-ecc08692cad1
+3D:
+ BackgroundColor: -1
+Password:
+LibInfo:
+ Name: "Energy Analyzer"
+ Version: "16.0.1"
+ Description: |+1
+  Evaluates energy usages.\r
+  $German$EnergieAnalyse\r
+  Wertet Energieverbräuche aus.\r
+  $Japanese$Energy Analyzer\r
+  エネルギ使用を評価します。\r
+  $Chinese$能耗分析仪\r
+  估算能量使用率。\r
+  $Russian$Анализ энергоэффективности\r
+  Оценивает использование энергии.\r
+  $Hungarian$Energia analízis\r
+  Energia felhasználás kiértékelése.
+ AlternativePaths: "$German$.Tools.Energieanalyse"
+ Requires3D: false
+ ProhibitAccess: true
+$Nodes:
+- 765ad133-ee8b-421a-8461-21373a6d6405
+- 8c933175-0faf-4c21-8d8b-5f7baa938713
+- 615936bf-d550-4d77-86c5-4199619f7c7a

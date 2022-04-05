@@ -1,0 +1,11 @@
+InternalClassType: Variable
+Color: 255
+Coordinate3D: [11.55,-3,0]
+DataType: table
+Font: 2
+HasInitValue: false
+Name: Individuals
+Origin: ad47705f-f9ee-40a7-9684-0ddedb3f7487
+ShowDataType: true
+UUID: 9a9fbbba-fe4f-4b74-8d5c-b321429ee6ae
+Value: null

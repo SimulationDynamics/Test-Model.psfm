@@ -1,0 +1,12 @@
+InternalClassType: Method
+Coordinate3D: [14,-10,0]
+Name: exePreparation
+Origin: a9e59983-6ee0-4391-a7f4-563f027af6cc
+Program: |+1
+ -- called by: context menu 'Preparation'
+ var obj:object := ?.&Preparation
+ obj.execute
+ -- The user defined preparation method was executed.
+ messageBox(rootfolder.localization.getText(173),1,4) -- info
+RandomSeed: 484
+UUID: f00d861d-25ff-4c15-87c4-cdcd266f4d37

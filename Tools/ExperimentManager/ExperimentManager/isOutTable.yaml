@@ -1,0 +1,16 @@
+InternalClassType: Method
+Coordinate3D: [12.5,-24.1,0]
+Name: isOutTable
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ -- detect a tablefile as output value
+ -- called by: plausibility interaction, testAttributeString,_recogDataType, readValue
+ param attrStr:string->boolean
+ 
+ var stmt:string := to_str("-> boolean var obj:object := ",attrStr,";result := (obj.internalClassName = \\"NwList2D\\")")
+ 
+ var res:any := executeSilent(stmt)
+ 
+ result := isBoolean(res) AND res
+RandomSeed: 220
+UUID: 2a869782-4cb8-4374-bb6f-3f098c0cef95

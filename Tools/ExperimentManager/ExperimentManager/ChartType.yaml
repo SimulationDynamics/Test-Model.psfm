@@ -1,0 +1,11 @@
+InternalClassType: Variable
+Color: 32768
+Coordinate3D: [21.65,-0.34999999999999964,0]
+DataType: string
+Font: 2
+HasInitValue: false
+Name: ChartType
+Origin: 5e17756d-7407-4e64-9e2b-48013727ec26
+ShowDataType: false
+UUID: 7e09ae62-28c7-4372-9554-e7ba4028ccb9
+Value: "MinMaxDiagram"

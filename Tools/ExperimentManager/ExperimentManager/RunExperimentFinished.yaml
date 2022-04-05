@@ -1,0 +1,10 @@
+InternalClassType: Variable
+Comment: ""
+Coordinate3D: [59,-35.2,0]
+DataType: boolean
+Font: 2
+Name: RunExperimentFinished
+Origin: 5e17756d-7407-4e64-9e2b-48013727ec26
+ShowDataType: false
+UUID: 0997ec8e-7efe-477c-927c-56f72c5baec7
+Value: false

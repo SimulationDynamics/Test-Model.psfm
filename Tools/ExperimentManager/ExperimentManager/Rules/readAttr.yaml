@@ -1,0 +1,27 @@
+InternalClassType: Method
+Coordinate3D: [-8.05,7,0]
+Name: readAttr
+Origin: 098aa45a-2d0b-4a6f-aea3-c58937895564
+Program: |+1
+ /*
+ parameter: proctime,  [2,3], [2]
+ result:    .proctime, [2,3], .read_(2)
+ */
+ param attr:string->string
+ 
+ var k:integer
+ 
+ result := attr
+ k := strLpos("]",attr)
+ if k > 0 
+ 	if strLpos(",",attr)=0  -- 1D List
+ 		result := strOmit(result,k,1)
+ 		k:=strLpos("[",result)
+ 		result := strOmit(result,k,1)
+ 		result := to_str("[",result,"]")
+ 	end
+ else -- like procTime
+ 	result := to_str(".",result)
+ end
+RandomSeed: 295
+UUID: 421d699e-c5ee-4a85-9f4f-315752a1f9cc
